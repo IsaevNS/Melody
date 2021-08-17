@@ -2,6 +2,6 @@
 ## Проект выполнил: Исаев Никита
 
 ### Технологии
--html
--css
--javascript
+- html
+- css
+- javascript
