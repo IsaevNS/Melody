@@ -1,19 +1,26 @@
 $(document).ready(function () {
   var currentFloor = 2;// переменная текущего этажа
+  var currentFlat=1;
   var counterUp =$(".counter-up");/* кнопка увеличения этажа*/
   var counterDown =$(".counter-down");/* кнопка уменьшения этажа*/
   var floorPath=$(".home-image path");
   var modal= $(".modal");
   var modalCloseButton=$(".modal-close-button");
   var veiwFlatsButton= $(".view-flats");
-  var current
+  var flatsPath=$(".flats path")
+  
   //функция при наведении мышкой на этаж
   floorPath.on("mouseover",function(){
     floorPath.removeClass("current-floor");//удаляем активный класс у этажей
     currentFloor =$(this).attr("data-floor");// получаем значение текущего этажа
     $(".counter").text(currentFloor);// записываем значение этажа в счетчик справа
   })
-
+  flatsPath.on("mouseover",function(){
+    flatsPath.removeClass("flat1");
+    currentFlat=$(this).attr("data-flats");
+    $(`[data-flats=${currentFlat}]`).toggleClass("flat1");
+    $(`[num-flats=${currentFlat}]`).toggleClass("flat1");
+  })
   floorPath.on("click",toggleModal);/* при клике на этаж, вызвать окно*/
 
   modalCloseButton.on("click",toggleModal)  /*при клике на кнопку закрыть убирает окно*/
