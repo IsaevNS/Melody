@@ -1,15 +1,24 @@
 $(document).ready(function () {
   var currentFloor = 2;// переменная текущего этажа
-  var counterUp =$(".counter-up")/* кнопка увеличения этажа*/
-  var counterDown =$(".counter-down")/* кнопка уменьшения этажа*/
-  var floorPath=$(".home-image path")
+  var counterUp =$(".counter-up");/* кнопка увеличения этажа*/
+  var counterDown =$(".counter-down");/* кнопка уменьшения этажа*/
+  var floorPath=$(".home-image path");
+  var modal= $(".modal");
+  var modalCloseButton=$(".modal-close-button");
+  var veiwFlatsButton= $(".view-flats");
+  var current
   //функция при наведении мышкой на этаж
   floorPath.on("mouseover",function(){
     floorPath.removeClass("current-floor");//удаляем активный класс у этажей
     currentFloor =$(this).attr("data-floor");// получаем значение текущего этажа
     $(".counter").text(currentFloor);// записываем значение этажа в счетчик справа
   })
-  
+
+  floorPath.on("click",toggleModal);/* при клике на этаж, вызвать окно*/
+
+  modalCloseButton.on("click",toggleModal)  /*при клике на кнопку закрыть убирает окно*/
+
+  veiwFlatsButton.on("click",toggleModal)
   counterUp.on("click", function() {// отслеживаем клик по кнопке ввверх
     if (currentFloor<18){ //проверяем значение этажа, оно не должно быть больше18
       currentFloor++;// прибавляем один этаж
@@ -28,5 +37,8 @@ $(document).ready(function () {
       $(`[data-floor=${usCurrentFloor}]`).toggleClass("current-floor");
      
     }
-  })
+  });
+  function toggleModal(){ // функция открыть-закрыть
+    modal.toggleClass("is-open");
+  }
 });/* проверка готовности работы*/
